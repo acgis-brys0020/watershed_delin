@@ -17,7 +17,7 @@ def generate_report(uid, watershed_new, streams, snap_pour, html_template, resam
 
     #Find watershed area
     ws_area = sum(row[0] for row in arcpy.da.SearchCursor(watershed_new, ["SHAPE@AREA"]))
-    ws_area = round(ws_area / 1_000_000, 2)
+    ws_area = round(ws_area / 10_000, 2)
 
     stats = get_stream_stats(
         uid, 
@@ -73,7 +73,7 @@ html_template = """<!DOCTYPE html>
         <div class = "date">Report generated {date_generated}</div>
         <hr>
         <div class = "summary">
-            <p><strong>Watershed area:</strong> {ws_area} km<sup>2</sup></p>
+            <p><strong>Watershed area:</strong> {ws_area} hectares</sup></p>
             <p><strong>Stream length:</strong> {stream_reach} m</p>
             <p><strong>Elevation difference*:</strong> {elevation_difference}</p>
             <p>*From headwater of longest stream to the watershed outlet.</p>
