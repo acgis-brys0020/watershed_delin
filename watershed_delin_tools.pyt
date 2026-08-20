@@ -43,17 +43,17 @@ class Toolbox:
     def __init__(self):
         """Define the toolbox (the name of the toolbox is the name of the
         .pyt file)."""
-        self.label = "Toolbox"
-        self.alias = "toolbox"
+        self.label = "Watershed Delineator"
+        self.alias = "watershed_delineator"
 
         # List of tool classes associated with this toolbox
-        self.tools = [TestClipper]
+        self.tools = [WatershedDelineator]
 
-class TestClipper(object):
+class WatershedDelineator(object):
     def __init__(self):
-        """Test function for uploading"""
-        self.label = "Test clip"
-        self.description = "test"
+        """Generates a stream network and delineates a watershed from DTM imagery."""
+        self.label = "Watershed Delineator"
+        self.description = "Generates a stream network and delineates a watershed from DTM imagery."
 
     def getParameterInfo(self):
         study_area = arcpy.Parameter(
@@ -67,7 +67,7 @@ class TestClipper(object):
         
         pourpoint = arcpy.Parameter(
             name = 'pourpoint',
-            displayName = 'Outlet/pour point ⚠️REQUIRED⚠️',
+            displayName = 'Outlet/pour point ⚠️REQUIRED FOR WATERSHED, OPTIONAL FOR STREAM NET⚠️',
             datatype = 'GPFeatureRecordSetLayer',
             direction = 'Input',
             parameterType = 'Optional'
